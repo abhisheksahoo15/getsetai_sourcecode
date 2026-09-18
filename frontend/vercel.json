@@ -1,4 +1,15 @@
 {
-  "$schema": "https://openapi.vercel.sh/vercel.json",
-  "framework": "tanstack-start"
+ "version": 2,
+ "builds": [
+   {
+     "src": "package.json",
+     "use": "@vercel/static-build"
+   }
+ ],
+ "routes": [
+   {
+     "src": "/(.*)",
+     "dest": "/index.html"
+   }
+ ]
 }
