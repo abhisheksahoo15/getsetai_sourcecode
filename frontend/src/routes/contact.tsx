@@ -9,7 +9,7 @@ export const Route = createFileRoute("/contact")({
       {
         name: "description",
         content:
-          "Contact Getsetai Innovations for AI integrations, software solutions, robotics partnerships or political strategy campaigns.",
+          "Contact Getsetai Innovations for AI integrations, software solutions, or robotics partnerships.",
       },
       { property: "og:title", content: "Contact — Getsetai Innovations" },
       {

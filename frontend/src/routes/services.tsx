@@ -1,7 +1,7 @@
 import { useEffect, useRef } from "react";
 import { createFileRoute } from "@tanstack/react-router";
 
-type ServiceTag = "Strategy" | "Technology" | "Growth" | "Education";
+type ServiceTag = "Technology" | "Growth" | "Education";
 
 type Service = {
   tag: ServiceTag;
@@ -10,19 +10,12 @@ type Service = {
 };
 
 const ACCENT_BY_TAG: Record<ServiceTag, string> = {
-  Strategy: "var(--color-foreground)",
   Technology: "var(--color-foreground)",
   Growth: "var(--muted-foreground)",
   Education: "var(--muted-foreground)",
 };
 
 const SERVICES: Service[] = [
-  {
-    tag: "Strategy",
-    title: "Political Strategy Management",
-    description:
-      "Data-informed campaign strategy, messaging and voter engagement built to move real outcomes.",
-  },
   {
     tag: "Education",
     title: "Technical Seminar",
@@ -68,7 +61,6 @@ const SERVICES: Service[] = [
 ];
 
 const LEGEND: { label: ServiceTag; color: string }[] = [
-  { label: "Strategy", color: "var(--foreground)" },
   { label: "Technology", color: "var(--foreground)" },
   { label: "Growth", color: "var(--muted-foreground)" },
   { label: "Education", color: "var(--muted-foreground)" },
@@ -434,7 +426,7 @@ function ServicesPage() {
 
         <p className="subhead">
           We provide cutting-edge technological solutions to propel your business forward —
-          across strategy, technology, growth and education.
+          across technology, growth and education.
         </p>
 
         <div className="legend">

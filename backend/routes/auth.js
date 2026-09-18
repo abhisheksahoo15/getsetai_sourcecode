@@ -45,42 +45,65 @@ const generateToken = (userId) => {
 router.post('/google', async (req, res) => {
   try {
     console.log('Google auth request received');
-    const { credential } = req.body;
+    const { credential, accessToken } = req.body;
 
-    if (!credential) {
-      console.error('No credential provided');
-      return res.status(400).json({ message: 'Google credential is required' });
+    if (!credential && !accessToken) {
+      console.error('No credential or accessToken provided');
+      return res.status(400).json({ message: 'Google credential or access token is required' });
     }
 
-    console.log('Verifying Google token...');
-    // Verify token with Google's tokeninfo API
-    const googleRes = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${credential}`);
-    console.log('Google API response status:', googleRes.status);
-    
-    if (!googleRes.ok) {
-      const errorData = await googleRes.json().catch(() => ({}));
-      console.error('Google token verification failed:', errorData);
-      return res.status(401).json({ message: errorData.error_description || 'Invalid Google token' });
+    let email, name, profilePicture, googleId;
+
+    if (credential) {
+      console.log('Verifying Google ID token...');
+      const googleRes = await fetch(`https://oauth2.googleapis.com/tokeninfo?id_token=${credential}`);
+      console.log('Google API response status:', googleRes.status);
+      
+      if (!googleRes.ok) {
+        const errorData = await googleRes.json().catch(() => ({}));
+        console.error('Google token verification failed:', errorData);
+        return res.status(401).json({ message: errorData.error_description || 'Invalid Google token' });
+      }
+
+      const payload = await googleRes.json();
+      console.log('Google token payload:', { email: payload.email, name: payload.name, aud: payload.aud });
+
+      // Verify client ID
+      if (payload.aud !== GOOGLE_CLIENT_ID) {
+        console.error('Client ID mismatch:', { expected: GOOGLE_CLIENT_ID, received: payload.aud });
+        return res.status(401).json({ message: 'Google token client ID mismatch' });
+      }
+
+      email = payload.email?.toLowerCase().trim();
+      name = payload.name || payload.given_name || email?.split('@')[0];
+      profilePicture = payload.picture || '';
+      googleId = payload.sub || '';
+    } else if (accessToken) {
+      console.log('Verifying Google access token with userinfo...');
+      const googleRes = await fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+        headers: { Authorization: `Bearer ${accessToken}` },
+      });
+      console.log('Google userinfo response status:', googleRes.status);
+
+      if (!googleRes.ok) {
+        const errorData = await googleRes.json().catch(() => ({}));
+        console.error('Google access token verification failed:', errorData);
+        return res.status(401).json({ message: errorData.error_description || 'Invalid Google access token' });
+      }
+
+      const payload = await googleRes.json();
+      console.log('Google userinfo payload:', { email: payload.email, name: payload.name, sub: payload.sub });
+
+      email = payload.email?.toLowerCase().trim();
+      name = payload.name || payload.given_name || email?.split('@')[0];
+      profilePicture = payload.picture || '';
+      googleId = payload.sub || '';
     }
 
-    const payload = await googleRes.json();
-    console.log('Google token payload:', { email: payload.email, name: payload.name, aud: payload.aud });
-
-    // Verify client ID
-    if (payload.aud !== GOOGLE_CLIENT_ID) {
-      console.error('Client ID mismatch:', { expected: GOOGLE_CLIENT_ID, received: payload.aud });
-      return res.status(401).json({ message: 'Google token client ID mismatch' });
-    }
-
-    const email = payload.email?.toLowerCase().trim();
     if (!email) {
       console.error('No email in Google payload');
       return res.status(400).json({ message: 'Google account has no email address' });
     }
-
-    const name = payload.name || payload.given_name || email.split('@')[0];
-    const profilePicture = payload.picture || '';
-    const googleId = payload.sub || '';
 
     console.log('Google user data:', { name, email, profilePicture, googleId });
     console.log('Looking for existing user with email:', email);

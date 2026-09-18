@@ -298,7 +298,7 @@ export function Nav() {
                   >
                     <Link
                       to={link.to}
-                      className="block text-[clamp(2.75rem,7vw,4.5rem)] leading-[1.15] tracking-[-0.04em] transition-opacity hover:opacity-50"
+                      className="block text-[clamp(2.5rem,6vw,4rem)] leading-[1.15] tracking-[-0.04em] transition-opacity hover:opacity-50"
                     >
                       {link.label}
                     </Link>

@@ -3,7 +3,7 @@ import { createFileRoute, Link, useNavigate } from "@tanstack/react-router";
 import { useState, useMemo, useEffect } from "react";
 import { useAuth } from "@/contexts/AuthContext";
 import { GoogleSignIn } from "@/components/auth/GoogleSignIn";
-import { Mail, Lock, User, Globe, XCircle, X } from "lucide-react";
+import { XCircle, X } from "lucide-react";
 
 export const Route = createFileRoute("/auth")({
   component: AuthPage,
@@ -105,21 +105,7 @@ function AuthPage() {
   return (
     <div className="min-h-screen flex overflow-hidden bg-black">
       {/* Left Section - Login Form */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 md:px-16 lg:px-24 py-12 relative z-10">
-        {/* Header */}
-        <div className="flex items-center justify-between mb-12">
-          <Link to="/" className="flex items-center gap-2">
-            <div className="flex flex-col">
-              <span className="text-xl font-black tracking-[0.08em] text-white">GETSETAI</span>
-              <span className="text-[8px] font-bold uppercase tracking-[0.24em] text-zinc-400">INNOVATIONS</span>
-            </div>
-          </Link>
-          <button className="flex items-center gap-2 text-sm text-zinc-400 hover:text-white transition-colors">
-            <Globe className="h-4 w-4" />
-            English
-          </button>
-        </div>
-
+      <div className="w-full lg:w-1/2 flex flex-col justify-center px-8 md:px-16 lg:px-24 pt-28 pb-12 relative z-10">
         {/* Form Container */}
         <div className="max-w-md mx-auto w-full">
           <AnimatePresence mode="wait">
@@ -210,17 +196,14 @@ function AuthPage() {
                 </AnimatePresence>
 
                 {/* Social Login */}
-                <div className="space-y-3 mb-6">
-                  <GoogleSignIn onSuccess={() => {
-                    console.log('Google sign-in success callback triggered in auth login');
-                    navigate({ to: "/courses" });
-                  }} />
-                  <button className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg border border-zinc-700 bg-zinc-900/50 text-white hover:bg-zinc-800 transition-colors">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                    </svg>
-                    Sign in with Apple
-                  </button>
+                <div className="mb-6">
+                  <GoogleSignIn
+                    text="signin_with"
+                    onSuccess={() => {
+                      console.log('Google sign-in success callback triggered in auth login');
+                      navigate({ to: "/courses" });
+                    }}
+                  />
                 </div>
 
                 {/* Divider */}
@@ -374,17 +357,14 @@ function AuthPage() {
                 </AnimatePresence>
 
                 {/* Social Login */}
-                <div className="space-y-3 mb-6">
-                  <GoogleSignIn onSuccess={() => {
-                    console.log('Google sign-in success callback triggered in auth signup');
-                    navigate({ to: "/courses" });
-                  }} />
-                  <button className="w-full flex items-center justify-center gap-3 px-4 py-3 rounded-lg border border-zinc-700 bg-zinc-900/50 text-white hover:bg-zinc-800 transition-colors">
-                    <svg className="w-5 h-5" viewBox="0 0 24 24" fill="currentColor">
-                      <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/>
-                    </svg>
-                    Sign up with Apple
-                  </button>
+                <div className="mb-6">
+                  <GoogleSignIn
+                    text="signup_with"
+                    onSuccess={() => {
+                      console.log('Google sign-in success callback triggered in auth signup');
+                      navigate({ to: "/courses" });
+                    }}
+                  />
                 </div>
 
                 {/* Divider */}

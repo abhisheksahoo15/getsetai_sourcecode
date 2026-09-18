@@ -151,8 +151,10 @@ function RootComponent() {
     if (typeof window !== "undefined") window.scrollTo(0, 0);
   }, [pathname]);
 
-  // Check if current route is an auth page
+  // Check if current route is an auth page or the spiral roll page
   const isAuthRoute = pathname === "/login" || pathname === "/signup" || pathname === "/auth";
+  const isSpiralRollRoute = pathname === "/" || pathname === "";
+  const shouldShowFooter = !isAuthRoute && !isSpiralRollRoute;
 
   return (
     <QueryClientProvider client={queryClient}>
@@ -171,7 +173,7 @@ function RootComponent() {
               <Outlet />
             </motion.main>
           </AnimatePresence>
-          {!isAuthRoute && <Footer />}
+          {shouldShowFooter && <Footer />}
           <Toaster position="bottom-right" />
         </CursorProvider>
       </AuthProvider>

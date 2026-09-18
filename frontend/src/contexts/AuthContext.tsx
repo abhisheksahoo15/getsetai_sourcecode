@@ -157,16 +157,20 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const googleLogin = async (credential: string) => {
+  const googleLogin = async (token: string, type: 'credential' | 'accessToken' = 'credential') => {
     setIsLoading(true);
     try {
-      console.log('Sending Google credential to backend...');
+      console.log('Sending Google token to backend...', { type });
+      const payload = type === 'accessToken' || token.startsWith('ya29.') 
+        ? { accessToken: token } 
+        : { credential: token };
+
       const response = await fetch(`${API_URL}/api/auth/google`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify({ credential }),
+        body: JSON.stringify(payload),
       });
 
       console.log('Backend response status:', response.status);

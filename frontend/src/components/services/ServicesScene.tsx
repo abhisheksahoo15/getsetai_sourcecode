@@ -3,7 +3,6 @@ import { Canvas } from "@react-three/fiber";
 import { Float, Html } from "@react-three/drei";
 
 const services = [
-  { icon: "🗳️", label: "Political Strategy Management" },
   { icon: "🎤", label: "Technical Seminar" },
   { icon: "🧠", label: "AI Driven Software Solutions" },
   { icon: "💻", label: "Website Development Full Stack" },
@@ -14,7 +13,6 @@ const services = [
 ] as const;
 
 const layout = [
-  [-3.7, 1.6, -1.4],
   [-2.4, -1.8, -0.8],
   [-0.5, 2.3, -1.2],
   [1.7, 1.9, -0.2],

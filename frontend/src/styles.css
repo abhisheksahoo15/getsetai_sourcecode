@@ -182,10 +182,41 @@
     opacity 0.4s var(--ease-cine);
 }
 
+@utility perspective-1000 {
+  perspective: 1000px;
+}
+
+@utility preserve-3d {
+  transform-style: preserve-3d;
+}
+
+@utility backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+@utility rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
 @keyframes spin-slow {
   to {
     transform: rotate(360deg);
   }
+}
+
+@keyframes badgeSway {
+  0%, 100% {
+    transform: rotate(-0.8deg);
+  }
+  50% {
+    transform: rotate(0.8deg);
+  }
+}
+
+@utility animate-badge-sway {
+  transform-origin: top center;
+  animation: badgeSway 6s ease-in-out infinite;
 }
 
 @media (prefers-reduced-motion: reduce) {

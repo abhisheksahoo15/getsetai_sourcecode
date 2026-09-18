@@ -298,10 +298,13 @@ function SignupPage() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8 }}
               >
-                <GoogleSignIn onSuccess={() => {
-                  console.log('Google sign-in success callback triggered in signup');
-                  navigate({ to: "/courses" });
-                }} />
+                <GoogleSignIn 
+                  text="signup_with"
+                  onSuccess={() => {
+                    console.log('Google sign-in success callback triggered in signup');
+                    navigate({ to: "/courses" });
+                  }} 
+                />
               </motion.div>
 
               <motion.div

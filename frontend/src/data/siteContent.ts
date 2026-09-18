@@ -40,14 +40,6 @@ export const company = {
 
 export const services: Service[] = [
   {
-    id: 1,
-    slug: "political-strategy-management",
-    title: "Political Strategy Management",
-    description:
-      "Campaign strategy, data-led planning and on-ground execution support for political organisations.",
-    category: "Services",
-  },
-  {
     id: 2,
     slug: "technical-seminar",
     title: "Technical Seminar",
@@ -195,7 +187,7 @@ export const contact = {
   phoneHref: "tel:+919202893485",
   hours: "Mon – Sat, 10:00 AM – 7:00 PM (IST)",
   intro:
-    "Reach out to our core team for AI integrations, software solutions, robotics partnerships, or political strategy campaigns.",
+    "Reach out to our core team for AI integrations, software solutions, or robotics partnerships.",
 };
 
 export const locations = [
@@ -219,21 +211,17 @@ export const socialLinks = [
 ];
 
 export const footerNav = {
-  product: [
+  company: [
     { label: "Services", to: "/services" },
     { label: "Courses", to: "/courses" },
     { label: "Team", to: "/team" },
     { label: "Careers", to: "/careers" },
-  ],
-  company: [
-    { label: "About Us", to: "/about" },
-    { label: "Careers", to: "/careers" },
     { label: "Contact", to: "/contact" },
-    { label: "Services", to: "/services" },
   ],
-  legal: [
-    { label: "Privacy Policy", to: "/contact" },
-    { label: "Terms of Service", to: "/contact" },
-    { label: "Cookie Policy", to: "/contact" },
+  resources: [
+    { label: "Documentation", to: "/documentation" },
+    { label: "Tutorials", to: "/tutorials" },
+    { label: "Support", to: "/support" },
+    { label: "Blog", to: "/blog" },
   ],
 };
