@@ -9,10 +9,19 @@ const crypto = require('crypto');
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '509974976339-bpan5hceh940oqgki7adq041nnv6gldc.apps.googleusercontent.com';
 console.log('Backend Google Client ID:', GOOGLE_CLIENT_ID);
 
-// Configure multer for file uploads
+// Configure multer for file uploads. Vercel's writable filesystem is /tmp.
+// Files stored there are temporary; use object storage (Cloudinary/S3/etc.)
+// for durable production profile images.
+const uploadDir = process.env.VERCEL
+  ? '/tmp/getsetai-uploads'
+  : path.join(__dirname, '..', 'uploads');
+
+const fs = require('fs');
+fs.mkdirSync(uploadDir, { recursive: true });
+
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, 'uploads/');
+    cb(null, uploadDir);
   },
   filename: function (req, file, cb) {
     const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1E9);
