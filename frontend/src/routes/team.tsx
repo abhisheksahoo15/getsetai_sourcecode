@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import abhishekFront from "@/assets/BackgroundRemove/AbhishekFront.png";
 import abhishekBack from "@/assets/BackgroundRemove/AbhishekBack.png";
 import mishraFront from "@/assets/BackgroundRemove/MishraFront.png";
-import mishraBack from "@/assets/BackgroundRemove/@/assets/BackgroundRemove/BharadwajBack.png";
+import mishraBack from "@/assets/BackgroundRemove/MishraBack.png";
 import bharadwajFront from "@/assets/BackgroundRemove/BharadwajFront.png";
 import bharadwajBack from "@/assets/BackgroundRemove/BharadwajBack.png";
 import kavyaFront from "@/assets/BackgroundRemove/KavyaFront.png";
