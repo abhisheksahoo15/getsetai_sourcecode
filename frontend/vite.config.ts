@@ -15,7 +15,8 @@ export default defineConfig({
   vite: {
     server: {
       port: 5173,
-      host: true
+      host: true,
+      allowedHosts:['getsetai-1.onrender.com']
     }
   }
 });
