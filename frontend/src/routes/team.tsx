@@ -5,7 +5,7 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 import abhishekFront from "@/assets/BackgroundRemove/AbhishekFront.png";
 import abhishekBack from "@/assets/BackgroundRemove/AbhishekBack.png";
 import mishraFront from "@/assets/BackgroundRemove/MishraFront.png";
-import mishraBack from "@/assets/BackgroundRemove/MishraBack.png";
+import mishraBack from "@/assets/BackgroundRemove/@/assets/BackgroundRemove/BharadwajBack.png";
 import bharadwajFront from "@/assets/BackgroundRemove/BharadwajFront.png";
 import bharadwajBack from "@/assets/BackgroundRemove/BharadwajBack.png";
 import kavyaFront from "@/assets/BackgroundRemove/KavyaFront.png";
@@ -146,7 +146,7 @@ const members: TeamMember[] = [
   {
     name: "Sanidhya Mishra",
     category: "founder",
-    label: "Director, COO",
+    label: "COO",
     badge: "Founder & Director",
     department: "Executive Leadership",
     description:
