@@ -60,20 +60,18 @@ export function BrandIdentity({ theme = "dark" }: { theme?: "dark" | "light" }) 
 
       <div className="flex flex-col text-left">
         <span
-          className={`text-base font-black leading-tight tracking-[0.08em] transition-colors duration-300 ${
-            theme === "dark"
-              ? "text-white group-hover:text-cyan-400"
-              : "text-black group-hover:text-purple-700"
-          }`}
+          className={`text-base font-black leading-tight tracking-[0.08em] transition-colors duration-300 ${theme === "dark"
+            ? "text-white group-hover:text-cyan-400"
+            : "text-black group-hover:text-purple-700"
+            }`}
         >
           GETSETAI
         </span>
         <span
-          className={`mt-0.5 text-[9px] font-bold uppercase leading-none tracking-[0.24em] transition-colors duration-300 ${
-            theme === "dark"
-              ? "text-zinc-400 group-hover:text-white"
-              : "text-zinc-500 group-hover:text-black"
-          }`}
+          className={`mt-0.5 text-[9px] font-bold uppercase leading-none tracking-[0.24em] transition-colors duration-300 ${theme === "dark"
+            ? "text-zinc-400 group-hover:text-white"
+            : "text-zinc-500 group-hover:text-black"
+            }`}
         >
           INNOVATIONS
         </span>
@@ -97,9 +95,9 @@ function ProfileDropdown() {
       >
         <div className="relative w-8 h-8 rounded-full bg-white/20 flex items-center justify-center text-white font-semibold backdrop-blur-sm border border-white/30 overflow-hidden">
           {user.profilePicture ? (
-            <img 
-              src={user.profilePicture.startsWith('http') ? user.profilePicture : `${API_URL}${user.profilePicture}`} 
-              alt="Profile" 
+            <img
+              src={user.profilePicture.startsWith('http') ? user.profilePicture : `${API_URL}${user.profilePicture}`}
+              alt="Profile"
               className="w-full h-full object-cover"
               onError={(e) => {
                 e.currentTarget.style.display = 'none';
@@ -138,9 +136,9 @@ function ProfileDropdown() {
               >
                 <div className="relative w-12 h-12 rounded-full bg-white/20 flex items-center justify-center text-white font-bold text-lg backdrop-blur-sm border border-white/30 overflow-hidden">
                   {user.profilePicture ? (
-                    <img 
-                      src={user.profilePicture.startsWith('http') ? user.profilePicture : `${API_URL}${user.profilePicture}`} 
-                      alt="Profile" 
+                    <img
+                      src={user.profilePicture.startsWith('http') ? user.profilePicture : `${API_URL}${user.profilePicture}`}
+                      alt="Profile"
                       className="w-full h-full object-cover"
                       onError={(e) => {
                         e.currentTarget.style.display = 'none';
@@ -187,6 +185,7 @@ function ProfileDropdown() {
 
 const links = [
   { to: "/courses", label: "Courses" },
+  { to: "/diglib", label: "Digital Library" },
   { to: "/team", label: "Team" },
   { to: "/careers", label: "Careers" },
   { to: "/services", label: "Services" },
@@ -241,7 +240,7 @@ export function Nav() {
 
           <div className="flex items-center gap-3">
             {isAuthenticated && <ProfileDropdown />}
-            
+
             <button
               type="button"
               onClick={() => setOpen(true)}
