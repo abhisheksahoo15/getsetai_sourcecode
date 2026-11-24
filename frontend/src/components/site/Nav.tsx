@@ -1,10 +1,10 @@
 import { useEffect, useId, useState } from "react";
-import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
+import { Link, useRouterState } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
 import { Instagram, Linkedin, MessageCircle, Dribbble, User, LogOut, Mail, X } from "lucide-react";
 import { EASE } from "@/lib/motion";
 import { useCursorProps } from "@/components/site/CursorProvider";
-import { company, contact, socialLinks } from "@/data/siteContent";
+import { contact, socialLinks } from "@/data/siteContent";
 import { useAuth } from "@/contexts/AuthContext";
 
 const API_URL = import.meta.env['VITE_API_URL'] || 'http://localhost:5000';
@@ -83,7 +83,6 @@ export function BrandIdentity({ theme = "dark" }: { theme?: "dark" | "light" }) 
 function ProfileDropdown() {
   const { user, logout } = useAuth();
   const [isOpen, setIsOpen] = useState(false);
-  const navigate = useNavigate();
 
   if (!user) return null;
 
@@ -183,14 +182,14 @@ function ProfileDropdown() {
   );
 }
 
-const links = [
+const links: { to: string; label: string }[] = [
   { to: "/courses", label: "Courses" },
-  { to: "/diglib", label: "Digital Library" },
+  { to: "/digital-library", label: "Digital Library" },
   { to: "/team", label: "Team" },
   { to: "/careers", label: "Careers" },
   { to: "/services", label: "Services" },
   { to: "/contact", label: "Contact" },
-] as const;
+];
 
 const ICONS = { Instagram, LinkedIn: Linkedin, WhatsApp: MessageCircle, Dribbble } as const;
 
@@ -201,22 +200,12 @@ const socials = socialLinks.map((s) => ({
 
 export function Nav() {
   const [open, setOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
   const pathname = useRouterState({ select: (s) => s.location.pathname });
   const menuCursor = useCursorProps("Menu");
   const { isAuthenticated } = useAuth();
   const theme = "dark";
 
   useEffect(() => setOpen(false), [pathname]);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 10);
-
-    handleScroll();
-    window.addEventListener("scroll", handleScroll, { passive: true });
-
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
 
   useEffect(() => {
     document.body.style.overflow = open ? "hidden" : "";
@@ -296,7 +285,8 @@ export function Nav() {
                     transition={{ duration: 0.7, delay: 0.15 + i * 0.07, ease: EASE.cine }}
                   >
                     <Link
-                      to={link.to}
+                      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                      to={link.to as any}
                       className="block text-[clamp(2.5rem,6vw,4rem)] leading-[1.15] tracking-[-0.04em] transition-opacity hover:opacity-50"
                     >
                       {link.label}

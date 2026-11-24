@@ -219,6 +219,7 @@ export const footerNav = {
     { label: "Contact", to: "/contact" },
   ],
   resources: [
+    { label: "Digital Library", to: "/digital-library" },
     { label: "Documentation", to: "/documentation" },
     { label: "Tutorials", to: "/tutorials" },
     { label: "Support", to: "/support" },

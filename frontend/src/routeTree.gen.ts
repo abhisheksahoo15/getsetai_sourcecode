@@ -16,6 +16,7 @@ import { Route as BlogRouteImport } from './routes/blog'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CoursesRouteImport } from './routes/courses'
+import { Route as DigitalLibraryRouteImport } from './routes/digital-library'
 import { Route as DocumentationRouteImport } from './routes/documentation'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as ProfileRouteImport } from './routes/profile'
@@ -59,6 +60,11 @@ const ContactRoute = ContactRouteImport.update({
 const CoursesRoute = CoursesRouteImport.update({
   id: '/courses',
   path: '/courses',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const DigitalLibraryRoute = DigitalLibraryRouteImport.update({
+  id: '/digital-library',
+  path: '/digital-library',
   getParentRoute: () => rootRouteImport,
 } as any)
 const DocumentationRoute = DocumentationRouteImport.update({
@@ -115,6 +121,7 @@ export interface FileRoutesByFullPath {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRouteWithChildren
+  '/digital-library': typeof DigitalLibraryRoute
   '/documentation': typeof DocumentationRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
@@ -133,6 +140,7 @@ export interface FileRoutesByTo {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRouteWithChildren
+  '/digital-library': typeof DigitalLibraryRoute
   '/documentation': typeof DocumentationRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
@@ -152,6 +160,7 @@ export interface FileRoutesById {
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
   '/courses': typeof CoursesRouteWithChildren
+  '/digital-library': typeof DigitalLibraryRoute
   '/documentation': typeof DocumentationRoute
   '/login': typeof LoginRoute
   '/profile': typeof ProfileRoute
@@ -172,6 +181,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/courses'
+    | '/digital-library'
     | '/documentation'
     | '/login'
     | '/profile'
@@ -190,6 +200,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/courses'
+    | '/digital-library'
     | '/documentation'
     | '/login'
     | '/profile'
@@ -208,6 +219,7 @@ export interface FileRouteTypes {
     | '/careers'
     | '/contact'
     | '/courses'
+    | '/digital-library'
     | '/documentation'
     | '/login'
     | '/profile'
@@ -227,6 +239,7 @@ export interface RootRouteChildren {
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
   CoursesRoute: typeof CoursesRouteWithChildren
+  DigitalLibraryRoute: typeof DigitalLibraryRoute
   DocumentationRoute: typeof DocumentationRoute
   LoginRoute: typeof LoginRoute
   ProfileRoute: typeof ProfileRoute
@@ -286,6 +299,13 @@ declare module '@tanstack/react-router' {
       path: '/courses'
       fullPath: '/courses'
       preLoaderRoute: typeof CoursesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/digital-library': {
+      id: '/digital-library'
+      path: '/digital-library'
+      fullPath: '/digital-library'
+      preLoaderRoute: typeof DigitalLibraryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/documentation': {
@@ -373,6 +393,7 @@ const rootRouteChildren: RootRouteChildren = {
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
   CoursesRoute: CoursesRouteWithChildren,
+  DigitalLibraryRoute: DigitalLibraryRoute,
   DocumentationRoute: DocumentationRoute,
   LoginRoute: LoginRoute,
   ProfileRoute: ProfileRoute,
