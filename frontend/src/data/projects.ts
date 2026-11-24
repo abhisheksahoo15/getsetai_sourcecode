@@ -1,60 +1,18 @@
-import imgTechnicalSeminar from "@/assets/technical-seminar.jpg";
-import imgAiSoftware from "@/assets/ai-driven-software-solutions.jpg";
-import imgFullstackWeb from "@/assets/website-development-full-stack.jpg";
-import imgDigitalMarketing from "@/assets/digital-marketing.jpg";
-import imgSocialMedia from "@/assets/social-media-management.jpg";
-import imgRobotics from "@/assets/robotics.jpg";
-import imgEnhancedCourses from "@/assets/enhanced-courses.jpg";
+import posterResearchPapers from "@/assets/posters/poster-research-papers.jpg";
+import posterEnhancedCourses from "@/assets/posters/poster-enhanced-courses.jpg";
+import posterAiSoftware from "@/assets/posters/poster-ai-software.jpg";
+import posterWebsiteDev from "@/assets/posters/poster-website-development.jpg";
+import posterTechnicalSeminar from "@/assets/posters/poster-technical-seminar.jpg";
+import posterDigitalMarketing from "@/assets/posters/poster-digital-marketing.jpg";
+import posterRobotics from "@/assets/posters/poster-robotics.jpg";
 
-import imgAiTools from "@/assets/ai-tools.jpg";
-import imgAiMastery from "@/assets/ai-mastery.jpg";
-import imgPythonMastery from "@/assets/python-mastery.jpg";
-import imgMachineLearning from "@/assets/machine-learning.jpg";
-import imgDevopsTraining from "@/assets/devops-live-training.jpg";
-import imgExpertConsultation from "@/assets/expert-consultation.jpg";
-
-import { company, contact, courses, services } from "@/data/siteContent";
-
-const serviceImageMap: Record<string, string> = {
-  "technical-seminar": imgTechnicalSeminar,
-  "ai-driven-software-solutions": imgAiSoftware,
-  "website-development-full-stack": imgFullstackWeb,
-  "digital-marketing": imgDigitalMarketing,
-  "social-media-management": imgSocialMedia,
-  robotics: imgRobotics,
-  "enhanced-courses": imgEnhancedCourses,
-};
-
-const courseImageMap: Record<string, string> = {
-  "ai-tools": imgAiTools,
-  "ai-mastery": imgAiMastery,
-  "python-mastery": imgPythonMastery,
-  "machine-learning": imgMachineLearning,
-  "devops-live-training": imgDevopsTraining,
-  "expert-consultation": imgExpertConsultation,
-};
-
-const allCovers = [
-  imgTechnicalSeminar,
-  imgAiSoftware,
-  imgFullstackWeb,
-  imgDigitalMarketing,
-  imgSocialMedia,
-  imgRobotics,
-  imgEnhancedCourses,
-  imgAiTools,
-  imgAiMastery,
-  imgPythonMastery,
-  imgMachineLearning,
-  imgDevopsTraining,
-  imgExpertConsultation,
-];
+import { company, contact } from "@/data/siteContent";
 
 export type Project = {
   slug: string;
   title: string;
   client: string;
-  category: "Services" | "Courses";
+  category: "Services" | "Courses" | "Research";
   year: string;
   location: string;
   cover: string;
@@ -65,69 +23,144 @@ export type Project = {
   gallery: string[];
 };
 
-const serviceEntries: Project[] = services.map((s, i) => {
-  const coverImg = serviceImageMap[s.slug] || allCovers[i % allCovers.length]!;
-  return {
-    slug: s.slug,
-    title: s.title,
-    client: company.name,
-    category: "Services",
-    year: "Service",
-    location: "India",
-    cover: coverImg,
-    ratio: i % 2 === 0 ? "portrait" : "landscape",
-    excerpt: s.description,
+export const projects: Project[] = [
+  {
+    slug: "research-papers",
+    title: "Research Papers Publishing",
+    client: "GetSetAI Research Lab",
+    category: "Research",
+    year: "2026",
+    location: "Global / India",
+    cover: posterResearchPapers,
+    ratio: "landscape",
+    excerpt: "Share Your Research. Make an Impact with IEEE, Springer, Elsevier, and arXiv indexing guidance.",
     body: [
-      s.description,
-      `${company.name} delivers this work as part of a wider practice spanning AI-driven software, full-stack development and enterprise solutions.`,
-      `To scope a ${s.title.toLowerCase()} engagement, write to ${contact.email} or call ${contact.phone}.`,
+      "Expert guidance, journal recommendations, paper editing & review, easy submission, and boosting research impact.",
+      "GetSetAI — Your Partner in Research Excellence.",
     ],
     credits: [
-      { role: "Offering", name: s.title },
-      { role: "Delivered by", name: company.name },
-      { role: "Availability", name: contact.hours },
+      { role: "Initiative", name: "Research Innovation Impact" },
+      { role: "Platform", name: "GetSetAI Digital Library" },
     ],
-    gallery: [
-      coverImg,
-      allCovers[(i + 2) % allCovers.length]!,
-      allCovers[(i + 4) % allCovers.length]!,
-    ],
-  };
-});
-
-const courseEntries: Project[] = courses.map((c, i) => {
-  const coverImg = courseImageMap[c.slug] || allCovers[(i + 7) % allCovers.length]!;
-  return {
-    slug: c.slug,
-    title: c.title,
-    client: `${c.price} — Course`,
+    gallery: [posterResearchPapers],
+  },
+  {
+    slug: "enhanced-courses",
+    title: "Enhanced Courses — Go Beyond Basics",
+    client: "GetSetAI Academy",
     category: "Courses",
-    year: c.price,
+    year: "2026",
     location: "Online",
-    cover: coverImg,
-    ratio: i % 2 === 0 ? "landscape" : "portrait",
-    excerpt: c.description,
+    cover: posterEnhancedCourses,
+    ratio: "landscape",
+    excerpt: "Learn In-Demand Skills: Full-Stack Dev, AI, Data Science, UI/UX, Cloud Computing, and Career Growth.",
     body: [
-      c.description,
-      `Enrolment for ${c.title} is listed at ${c.price} on the Getsetai Innovations course catalogue.`,
-      `Questions before enrolling? Email ${contact.email} — the team replies ${contact.hours}.`,
+      "Build real projects, gain industry in-demand skills, and learn with experts at GetSetAI Innovations.",
     ],
     credits: [
-      { role: "Course", name: c.title },
-      { role: "Price", name: c.price },
-      { role: "Enrol", name: c.url },
+      { role: "Certification", name: "Industry Recognized" },
+      { role: "Format", name: "Hands-on Projects & Mentorship" },
     ],
-    gallery: [
-      coverImg,
-      allCovers[(i + 1) % allCovers.length]!,
-      allCovers[(i + 5) % allCovers.length]!,
+    gallery: [posterEnhancedCourses],
+  },
+  {
+    slug: "ai-driven-software-solutions",
+    title: "AI-Driven Software Solutions",
+    client: "Enterprise Solutions",
+    category: "Services",
+    year: "2026",
+    location: "India / Global",
+    cover: posterAiSoftware,
+    ratio: "landscape",
+    excerpt: "Turn Ideas into Intelligent Solutions — Custom AI software, ML models, and smart automation.",
+    body: [
+      "Custom AI-powered software, machine learning solutions, and intelligent automation across Healthcare, E-Commerce, Finance, Education, and Automotive.",
     ],
-  };
-});
+    credits: [
+      { role: "Capabilities", name: "AI & ML, Cloud & APIs" },
+      { role: "Engineering", name: "GetSetAI Innovations" },
+    ],
+    gallery: [posterAiSoftware],
+  },
+  {
+    slug: "website-development-full-stack",
+    title: "Website Development — Full Stack Solutions",
+    client: "Digital Solutions",
+    category: "Services",
+    year: "2026",
+    location: "India / Global",
+    cover: posterWebsiteDev,
+    ratio: "landscape",
+    excerpt: "Innovative digital solutions for businesses & startups. Modern designs, high performance, and robust security.",
+    body: [
+      "Custom websites, web apps, e-commerce stores, backend engineering, UI/UX design, and 24/7 maintenance support.",
+    ],
+    credits: [
+      { role: "Stack", name: "React, Node.js, Next, Python, Cloud" },
+      { role: "Performance", name: "Fast, Secure & Scalable" },
+    ],
+    gallery: [posterWebsiteDev],
+  },
+  {
+    slug: "technical-seminar",
+    title: "Technical Seminar & Workshops",
+    client: "Academic & Corporate Outreach",
+    category: "Services",
+    year: "2026",
+    location: "Nationwide",
+    cover: posterTechnicalSeminar,
+    ratio: "landscape",
+    excerpt: "Build a Strong Portfolio: from learning to real opportunities with real projects and expert guidance.",
+    body: [
+      "Empowering students and professional teams for a smarter future with hands-on AI tools, development, and career mentorship.",
+    ],
+    credits: [
+      { role: "Outreach", name: "Seminars & Hackathons" },
+      { role: "Partners", name: "Universities & Enterprises" },
+    ],
+    gallery: [posterTechnicalSeminar],
+  },
+  {
+    slug: "digital-marketing",
+    title: "Digital Marketing — Grow Your Brand",
+    client: "Growth & Media",
+    category: "Services",
+    year: "2026",
+    location: "India / Global",
+    cover: posterDigitalMarketing,
+    ratio: "landscape",
+    excerpt: "Reach more, sell better with data-driven SEO, performance marketing, social media, and brand building.",
+    body: [
+      "Strategic marketing plans, creative campaigns, lead generation, social media management, and online sales acceleration.",
+    ],
+    credits: [
+      { role: "Reach", name: "Google, Meta, LinkedIn, YouTube" },
+      { role: "Strategy", name: "Data-Driven Performance Growth" },
+    ],
+    gallery: [posterDigitalMarketing],
+  },
+  {
+    slug: "robotics-and-automation",
+    title: "Robotics & Automation Systems",
+    client: "Applied Robotics Lab",
+    category: "Services",
+    year: "2026",
+    location: "India",
+    cover: posterRobotics,
+    ratio: "landscape",
+    excerpt: "Smart robots, a smarter future. Designing intelligent robotic systems and automation for the real world.",
+    body: [
+      "AI-powered robotics, intelligent automation, design & build, and industry 4.0 applications in Manufacturing, Healthcare, Automotive, and Agriculture.",
+    ],
+    credits: [
+      { role: "Specialization", name: "Industry 4.0, ROS & Embedded AI" },
+      { role: "Applications", name: "Automation & Robotics Design" },
+    ],
+    gallery: [posterRobotics],
+  },
+];
 
-export const projects: Project[] = [...serviceEntries, ...courseEntries];
-
-export const categories = ["All", "Services", "Courses"] as const;
+export const categories = ["All", "Services", "Courses", "Research"] as const;
 
 export function getProject(slug: string) {
   return projects.find((p) => p.slug === slug);

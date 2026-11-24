@@ -1,7 +1,16 @@
 import { useEffect, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { AnimatePresence, motion } from "motion/react";
-import { BookOpen, Sparkles, X, ArrowRight, FileText, CheckCircle2 } from "lucide-react";
+import {
+  BookOpen,
+  Sparkles,
+  X,
+  ArrowRight,
+  FileText,
+  CheckCircle2,
+  AlertCircle,
+  ExternalLink,
+} from "lucide-react";
 
 const STORAGE_KEY = "getsetai_diglib_welcome_seen";
 
@@ -88,10 +97,36 @@ export function DigitalLibraryWelcomeModal() {
               Welcome to the Digital Library of GetSetAI
             </h2>
 
-            <p className="text-sm text-neutral-300 leading-relaxed mb-6">
+            <p className="text-sm text-neutral-300 leading-relaxed mb-4">
               Explore fantastic peer-reviewed research papers in Artificial Intelligence, Machine
               Learning, Resume Screening, and Autonomous Exam Assistance, published with full academic rigor.
             </p>
+
+            {/* Red Urgent Deadline Banner & Submission Callout */}
+            <div className="mb-5 rounded-2xl border border-red-500/40 bg-red-950/40 p-4 shadow-lg backdrop-blur-md">
+              <div className="flex items-start gap-2.5">
+                <AlertCircle className="h-5 w-5 text-red-400 shrink-0 mt-0.5 animate-pulse" />
+                <div className="flex-1">
+                  <p className="text-xs sm:text-sm font-bold uppercase tracking-wide text-red-400">
+                    Publish your research paper in GetSetAI Digital Library
+                  </p>
+                  <p className="text-xs font-semibold text-red-300 mt-1">
+                    Deadline: <span className="text-white underline font-extrabold">2nd December 2026</span>
+                  </p>
+                  <div className="mt-3">
+                    <a
+                      href="https://docs.google.com/forms/d/e/1FAIpQLSfeDcnkl79i5RQtUUukNgjxijrs_ekfW15bSkNM37ro4cwbww/viewform?usp=header"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex items-center gap-1.5 text-xs font-bold text-red-200 bg-red-600/30 hover:bg-red-600/50 border border-red-500/50 px-3 py-1.5 rounded-full transition-all hover:scale-105 active:scale-95 hover:text-white"
+                    >
+                      Click to submit / file your research paper
+                      <ExternalLink className="h-3.5 w-3.5" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
 
             {/* Highlights List */}
             <div className="space-y-2.5 mb-6 text-xs text-neutral-300/90 font-medium bg-white/[0.03] border border-white/10 rounded-2xl p-4">

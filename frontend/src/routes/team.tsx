@@ -6,8 +6,6 @@ import abhishekFront from "@/assets/BackgroundRemove/AbhishekFront.png";
 import abhishekBack from "@/assets/BackgroundRemove/AbhishekBack.png";
 import mishraFront from "@/assets/BackgroundRemove/MishraFront.png";
 import mishraBack from "@/assets/BackgroundRemove/MishraBack.png";
-import bharadwajFront from "@/assets/BackgroundRemove/BharadwajFront.png";
-import bharadwajBack from "@/assets/BackgroundRemove/BharadwajBack.png";
 import manojFront from "@/assets/BackgroundRemove/ManojFront.png";
 import manojBack from "@/assets/BackgroundRemove/ManojBack.png";
 import neerajFront from "@/assets/BackgroundRemove/NeerajFront.png";
@@ -115,18 +113,6 @@ const CATEGORY_THEMES: Record<Category, CategoryTheme> = {
 };
 
 const members: TeamMember[] = [
-  {
-    name: "Bugtha Bharadwaj",
-    category: "founder",
-    label: "Director, CMO",
-    badge: "Founder & Director",
-    department: "Executive Leadership",
-    description:
-      "Leads brand strategy, market positioning, customer engagement, and growth initiatives across all Getsetai business verticals.",
-    tags: ["Brand Strategy", "Market Growth", "Customer Engagement"],
-    frontImage: bharadwajFront,
-    backImage: bharadwajBack,
-  },
   {
     name: "Abhishek Sahoo",
     category: "founder",
