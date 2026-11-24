@@ -8,14 +8,10 @@ import mishraFront from "@/assets/BackgroundRemove/MishraFront.png";
 import mishraBack from "@/assets/BackgroundRemove/MishraBack.png";
 import bharadwajFront from "@/assets/BackgroundRemove/BharadwajFront.png";
 import bharadwajBack from "@/assets/BackgroundRemove/BharadwajBack.png";
-import kavyaFront from "@/assets/BackgroundRemove/KavyaFront.png";
-import kavyaBack from "@/assets/BackgroundRemove/KavyaBack.png";
 import manojFront from "@/assets/BackgroundRemove/ManojFront.png";
 import manojBack from "@/assets/BackgroundRemove/ManojBack.png";
 import neerajFront from "@/assets/BackgroundRemove/NeerajFront.png";
 import neerajBack from "@/assets/BackgroundRemove/NeerajBack.png";
-import nidhiFront from "@/assets/BackgroundRemove/NidhiFront.png";
-import nidhiBack from "@/assets/BackgroundRemove/NidhiBack.png";
 import praveenFront from "@/assets/BackgroundRemove/PraveenFront.png";
 import praveenBack from "@/assets/BackgroundRemove/PraveenBack.png";
 import ramFront from "@/assets/BackgroundRemove/RamFront.png";
@@ -154,30 +150,6 @@ const members: TeamMember[] = [
     tags: ["Operations Strategy", "Scale & Execution", "Enterprise Alliances"],
     frontImage: mishraFront,
     backImage: mishraBack,
-  },
-  {
-    name: "Nidhi Galande",
-    category: "hr",
-    label: "Human Resources Lead",
-    badge: "People & Culture",
-    department: "People Operations",
-    description:
-      "Fosters talent acquisition, employee wellness, and cultural vitality, cultivating a supportive and high-growth team environment.",
-    tags: ["Talent Acquisition", "Employee Growth", "Workplace Culture"],
-    frontImage: nidhiFront,
-    backImage: nidhiBack,
-  },
-  {
-    name: "Kavya Sucharitha",
-    category: "hr",
-    label: "People Operations",
-    badge: "People & Culture",
-    department: "Human Resources",
-    description:
-      "Oversees team engagement, talent pipelines, and organizational practices to empower cross-functional teams to excel.",
-    tags: ["People Operations", "Talent Pipeline", "Culture Strategy"],
-    frontImage: kavyaFront,
-    backImage: kavyaBack,
   },
   {
     name: "Ram Charan",

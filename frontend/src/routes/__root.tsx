@@ -17,6 +17,7 @@ import { reportLovableError } from "../lib/lovable-error-reporting";
 import { CursorProvider } from "@/components/site/CursorProvider";
 import { Nav } from "@/components/site/Nav";
 import { Footer } from "@/components/site/Footer";
+import { DigitalLibraryWelcomeModal } from "@/components/site/DigitalLibraryWelcomeModal";
 import { useSmoothScroll } from "@/hooks/useSmoothScroll";
 import { EASE } from "@/lib/motion";
 import { AuthProvider } from "@/contexts/AuthContext";
@@ -174,6 +175,7 @@ function RootComponent() {
             </motion.main>
           </AnimatePresence>
           {shouldShowFooter && <Footer />}
+          <DigitalLibraryWelcomeModal />
           <Toaster position="bottom-right" />
         </CursorProvider>
       </AuthProvider>

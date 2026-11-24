@@ -137,12 +137,22 @@ interface CardMesh extends THREE.Mesh {
   };
 }
 
-export default function SpiralGallery() {
+interface SpiralGalleryProps {
+  onScrollEnd?: () => void;
+}
+
+export default function SpiralGallery({ onScrollEnd }: SpiralGalleryProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const [hoveredProject, setHoveredProject] = useState<Project | null>(null);
   const [displayedProject, setDisplayedProject] = useState<Project | null>(null);
+
+  // Keep latest onScrollEnd ref
+  const onScrollEndRef = useRef(onScrollEnd);
+  useEffect(() => {
+    onScrollEndRef.current = onScrollEnd;
+  }, [onScrollEnd]);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -295,11 +305,28 @@ export default function SpiralGallery() {
     let pointerStartY = 0;
     let lastPointerY = 0;
 
+    // Track scroll interactions to trigger end of spiral after 5-7 scrolls
+    let userScrollCycles = 0;
+    let lastWheelTime = 0;
+    const REQUIRED_SCROLLS_FOR_FOOTER = 6; // between 5 and 7 full scrolls
+
     // Wheel listener
     const onWheel = (e: WheelEvent) => {
       targetWheelDeltaY += e.deltaY * 0.00015;
       targetWheelDeltaY = Math.max(-1.4, Math.min(1.4, targetWheelDeltaY));
       wheelDirection = e.deltaY >= 0 ? 1 : -1;
+
+      // Count distinct downward scrolls
+      if (e.deltaY > 20) {
+        const now = performance.now();
+        if (now - lastWheelTime > 350) {
+          userScrollCycles++;
+          lastWheelTime = now;
+          if (userScrollCycles >= REQUIRED_SCROLLS_FOR_FOOTER) {
+            onScrollEndRef.current?.();
+          }
+        }
+      }
     };
 
     // Pointer move listener

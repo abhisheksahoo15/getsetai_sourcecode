@@ -3,9 +3,9 @@ import { BrandIdentity } from "@/components/site/Nav";
 import { Instagram, Linkedin, MessageCircle } from "lucide-react";
 import { company, footerNav, socialLinks } from "@/data/siteContent";
 
-export function Footer() {
+export function Footer({ forceVisible = false }: { forceVisible?: boolean }) {
   const pathname = useRouterState({ select: (s) => s.location.pathname });
-  if (pathname === "/") return null;
+  if (pathname === "/" && !forceVisible) return null;
 
   return (
     <footer className="border-t border-border bg-card/30 backdrop-blur-sm px-5 py-12 md:px-10 mt-12">

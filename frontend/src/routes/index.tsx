@@ -1,7 +1,8 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useRef, useState } from "react";
 import { createFileRoute } from "@tanstack/react-router";
-import { motion } from "motion/react";
+import { motion, AnimatePresence } from "motion/react";
 import { ShowreelBadge } from "@/components/site/ShowreelBadge";
+import { Footer } from "@/components/site/Footer";
 import { useHydrated } from "@/hooks/useHydrated";
 import { EASE } from "@/lib/motion";
 
@@ -31,6 +32,15 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   const hydrated = useHydrated();
+  const footerRef = useRef<HTMLDivElement>(null);
+  const [showFooter, setShowFooter] = useState(false);
+
+  const handleSpiralEnd = () => {
+    setShowFooter(true);
+    setTimeout(() => {
+      footerRef.current?.scrollIntoView({ behavior: "smooth" });
+    }, 100);
+  };
 
   return (
     <div className="grid-field relative min-h-dvh">
@@ -47,7 +57,7 @@ function Index() {
         <div className="relative h-dvh w-full overflow-hidden">
           {hydrated && (
             <Suspense fallback={null}>
-              <SpiralGallery />
+              <SpiralGallery onScrollEnd={handleSpiralEnd} />
             </Suspense>
           )}
         </div>
@@ -56,6 +66,22 @@ function Index() {
       <p className="pointer-events-none fixed bottom-6 right-5 z-40 hidden text-sm text-muted-foreground md:block">
         AI &amp; Tech — services and courses
       </p>
+
+      {/* Footer is only rendered and brought into view after 5-7 scrolls */}
+      <AnimatePresence>
+        {showFooter && (
+          <motion.div
+            ref={footerRef}
+            initial={{ opacity: 0, y: 50 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: 50 }}
+            transition={{ duration: 0.8, ease: EASE.cine }}
+            className="relative z-30"
+          >
+            <Footer forceVisible />
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }
